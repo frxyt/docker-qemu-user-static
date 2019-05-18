@@ -11,4 +11,4 @@ RUN     DEBIAN_FRONTEND=noninteractive apt-get update \
 FROM busybox:latest
 LABEL maintainer="Jérémy WALTHER <jeremy@ferox.yt>"
 COPY --from=qemu /usr/bin/qemu-* /usr/bin/
-COPY LICENSE README.md /frx/
+COPY Dockerfile LICENSE README.md /frx/
