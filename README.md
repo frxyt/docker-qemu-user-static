@@ -6,6 +6,10 @@
 ![GitHub issues](https://img.shields.io/github/issues/frxyt/docker-qemu-user-static.svg)
 ![GitHub last commit](https://img.shields.io/github/last-commit/frxyt/docker-qemu-user-static.svg)
 
+This image embbed `qemu-user-static`, so you can copy these binaries when cross-building your docker images !
+
+This way, you can build and run an `arm32v7` or an `arm64v8` Docker image on a `x86 / amd64` host !
+
 * Docker Hub: https://hub.docker.com/r/frxyt/qemu-user-static
 * GitHub: https://github.com/frxyt/docker-qemu-user-static
 
@@ -15,11 +19,26 @@
 
 ## Usage
 
-```Dockerfile
-FROM frxyt/qemu-user-static:latest AS qemu
-FROM arm32v7/debian:stable-slim
-COPY --from=qemu /usr/bin/qemu-arm-static /usr/bin
-```
+1. Register `qemu-user-static` on your host with:
+   `docker run --rm --privileged multiarch/qemu-user-static:register --reset`
+
+1. Modify your `Dockerfile` to copy required `qemu-ARCH-static` package:
+
+   * For `arm32v7`:
+
+   ```Dockerfile
+   FROM frxyt/qemu-user-static:latest AS qemu
+   FROM arm32v7/debian:stable-slim
+   COPY --from=qemu /usr/bin/qemu-arm-static /usr/bin
+   ```
+
+   * For `arm64v8`:
+
+   ```Dockerfile
+   FROM frxyt/qemu-user-static:latest AS qemu
+   FROM arm64v8/debian:stable-slim
+   COPY --from=qemu /usr/bin/qemu-aarch64-static /usr/bin
+   ```
 
 ## Build
 
