@@ -1,4 +1,4 @@
-# Docker Image for Labrackup, by [FEROX](https://ferox.yt)
+# Docker Image providing `qemu-user-static`, by [FEROX](https://ferox.yt)
 
 ![Docker Cloud Automated build](https://img.shields.io/docker/cloud/automated/frxyt/qemu-user-static.svg)
 ![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/frxyt/qemu-user-static.svg)
